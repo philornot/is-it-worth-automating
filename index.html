@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IsItWorthAutomating?</title>
+    <title>is it worth automating?</title>
     <style>
+      /* Reset and base styles */
       * {
         margin: 0;
         padding: 0;
@@ -29,6 +30,7 @@
         color: #111827;
       }
 
+      /* Header section */
       .header {
         border-bottom: 1px solid #374151;
         padding: 1rem 1.5rem;
@@ -39,6 +41,7 @@
         border-bottom-color: #e5e7eb;
       }
 
+      /* Header content container */
       .header-content {
         max-width: 80rem;
         margin: 0 auto;
@@ -47,6 +50,7 @@
         align-items: center;
       }
 
+      /* Header title with icon */
       .header-title {
         display: flex;
         align-items: center;
@@ -55,8 +59,22 @@
         font-weight: 500;
       }
 
-      .theme-toggle {
-        padding: 0.5rem;
+      /* Container for language and theme toggles */
+      .header-controls {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      /* Base styles for both toggle buttons */
+      .theme-toggle,
+      .language-toggle {
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
         background: #1f2937;
         border: 1px solid #4b5563;
         border-radius: 0.375rem;
@@ -65,43 +83,68 @@
         transition: all 0.3s ease;
       }
 
-      .theme-toggle:hover {
+      /* Language toggle specific styles */
+      .language-toggle {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+
+      /* Hover effects for toggle buttons */
+      .theme-toggle:hover,
+      .language-toggle:hover {
         background: #374151;
         transform: scale(1.05);
       }
 
-      body.light-theme .theme-toggle {
+      /* Light theme styles for toggle buttons */
+      body.light-theme .theme-toggle,
+      body.light-theme .language-toggle {
         background: white;
         border-color: #d1d5db;
         color: #4b5563;
       }
 
-      body.light-theme .theme-toggle:hover {
+      body.light-theme .theme-toggle:hover,
+      body.light-theme .language-toggle:hover {
         background: #f9fafb;
       }
 
+      /* Main content container */
       .main-content {
         max-width: 80rem;
         margin: 0 auto;
         padding: 4rem 1.5rem;
       }
 
+      /* Hero section */
       .hero {
         text-align: center;
         margin-bottom: 4rem;
       }
 
+      /* Hero title - stays on one line until mobile */
       .hero-title {
         font-size: 2.25rem;
         font-weight: bold;
         margin-bottom: 1rem;
         color: white;
+        white-space: nowrap;
       }
 
       body.light-theme .hero-title {
         color: #111827;
       }
 
+      /* Mobile responsive for hero title */
+      @media (max-width: 640px) {
+        .hero-title {
+          white-space: normal;
+          font-size: 1.875rem;
+        }
+      }
+
+      /* Hero subtitle */
       .hero-subtitle {
         font-size: 1.125rem;
         max-width: 32rem;
@@ -114,6 +157,7 @@
         color: #4b5563;
       }
 
+      /* Calculator card container */
       .calculator-card {
         max-width: 64rem;
         margin: 0 auto;
@@ -131,6 +175,7 @@
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
       }
 
+      /* Formula display section */
       .formula-section {
         padding: 1.5rem;
         background: #1f2937;
@@ -143,12 +188,14 @@
         border-bottom-color: #e5e7eb;
       }
 
+      /* Formula title */
       .formula-title {
         font-size: 1.125rem;
         font-weight: 600;
         margin-bottom: 1rem;
       }
 
+      /* Formula text display */
       .formula-text {
         display: inline-block;
         background: #1f2937;
@@ -164,18 +211,21 @@
         color: #1d4ed8;
       }
 
+      /* Two-column grid layout */
       .grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         min-height: 25rem;
       }
 
+      /* Mobile single column layout */
       @media (max-width: 768px) {
         .grid {
           grid-template-columns: 1fr;
         }
       }
 
+      /* Input panel (left side) */
       .input-panel {
         padding: 2rem;
         border-right: 1px solid #374151;
@@ -187,6 +237,7 @@
         border-right-color: #e5e7eb;
       }
 
+      /* Mobile input panel styling */
       @media (max-width: 768px) {
         .input-panel {
           border-right: none;
@@ -198,16 +249,19 @@
         }
       }
 
+      /* Input section title */
       .input-title {
         font-size: 1.125rem;
         font-weight: 600;
         margin-bottom: 1.5rem;
       }
 
+      /* Input field group container */
       .input-group {
         margin-bottom: 1.5rem;
       }
 
+      /* Input field labels */
       .label {
         display: block;
         font-size: 0.875rem;
@@ -220,6 +274,7 @@
         color: #374151;
       }
 
+      /* Input field styling */
       .input {
         width: 100%;
         padding: 0.75rem 1rem;
@@ -231,16 +286,19 @@
         transition: all 0.3s ease;
       }
 
+      /* Input focus state */
       .input:focus {
         outline: none;
         border-color: #3b82f6;
         box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
       }
 
+      /* Input placeholder styling */
       .input::placeholder {
         color: #6b7280;
       }
 
+      /* Light theme input styling */
       body.light-theme .input {
         background: white;
         border-color: #d1d5db;
@@ -251,6 +309,7 @@
         color: #9ca3af;
       }
 
+      /* Output panel (right side) */
       .output-panel {
         padding: 2rem;
         background: #1f2937;
@@ -263,11 +322,13 @@
         background: #f9fafb;
       }
 
+      /* Result container */
       .result-container {
         text-align: center;
         width: 100%;
       }
 
+      /* Result badge (worth it / not worth it) */
       .result-badge {
         display: inline-block;
         padding: 1rem 1.5rem;
@@ -277,18 +338,21 @@
         font-weight: bold;
       }
 
+      /* Worth it badge styling */
       .result-badge.worth {
         background: #dcfce7;
         color: #166534;
         border: 1px solid #bbf7d0;
       }
 
+      /* Not worth it badge styling */
       .result-badge.not-worth {
         background: #fef2f2;
         color: #991b1b;
         border: 1px solid #fecaca;
       }
 
+      /* Result details text */
       .result-details {
         color: #e5e7eb;
       }
@@ -297,18 +361,21 @@
         color: #1f2937;
       }
 
+      /* Result section title */
       .result-title {
         font-size: 1.5rem;
         font-weight: bold;
         margin-bottom: 0.5rem;
       }
 
+      /* Time saved/lost display */
       .result-time {
         font-size: 1.875rem;
         font-weight: bold;
         margin-bottom: 0.25rem;
       }
 
+      /* Result subtext */
       .result-subtext {
         font-size: 0.875rem;
         color: #9ca3af;
@@ -318,6 +385,7 @@
         color: #6b7280;
       }
 
+      /* Share result button */
       .share-button {
         margin-top: 1.5rem;
         display: inline-flex;
@@ -350,6 +418,7 @@
         background: #e5e7eb;
       }
 
+      /* Empty state placeholder */
       .placeholder {
         text-align: center;
         color: #9ca3af;
@@ -359,6 +428,7 @@
         color: #6b7280;
       }
 
+      /* Placeholder icon */
       .placeholder-icon {
         width: 3rem;
         height: 3rem;
@@ -370,21 +440,25 @@
         color: #d1d5db;
       }
 
+      /* Placeholder title */
       .placeholder-title {
         font-size: 1.125rem;
         font-weight: 500;
         margin-bottom: 0.5rem;
       }
 
+      /* Placeholder description text */
       .placeholder-text {
         font-size: 0.875rem;
       }
 
+      /* Footer section */
       .footer {
         text-align: center;
         margin-top: 4rem;
       }
 
+      /* Footer text */
       .footer-text {
         font-size: 0.875rem;
         margin-bottom: 1rem;
@@ -395,6 +469,7 @@
         color: #9ca3af;
       }
 
+      /* GitHub link */
       .github-link {
         display: inline-flex;
         align-items: center;
@@ -418,6 +493,7 @@
         color: #374151;
       }
 
+      /* Icon sizes */
       .icon {
         width: 1.25rem;
         height: 1.25rem;
@@ -450,28 +526,37 @@
           </svg>
           <span id="headerTitle">is it worth automating?</span>
         </div>
-        <button class="theme-toggle" onclick="toggleTheme()">
-          <svg
-            class="icon icon-moon"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <div class="header-controls">
+          <button
+            class="language-toggle"
+            onclick="toggleLanguage()"
+            id="languageToggle"
           >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-          <svg
-            class="icon icon-sun"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            style="display: none"
-          >
-            <circle cx="12" cy="12" r="5"></circle>
-            <path
-              d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42m12.72-12.72 1.42-1.42"
-            ></path>
-          </svg>
-        </button>
+            EN
+          </button>
+          <button class="theme-toggle" onclick="toggleTheme()">
+            <svg
+              class="icon icon-moon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg
+              class="icon icon-sun"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              style="display: none"
+            >
+              <circle cx="12" cy="12" r="5"></circle>
+              <path
+                d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42m12.72-12.72 1.42-1.42"
+              ></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -603,56 +688,70 @@
       // Translations
       const translations = {
         en: {
-          title: "is it worth automating",
+          title: "is it worth automating?",
           heroTitle: "is it worth automating this task?",
           heroSubtitle:
-            "calculate if building automation will actually save you time in the long run",
-          formulaTitle: "the math",
+            "find out if building automation will actually save you time in the long run",
+          formulaTitle: "the math:",
           formula: "automation time ≤ manual time × repetitions",
           inputTitle: "your task",
           automationLabel: "time to build automation (minutes)",
           manualLabel: "time per manual execution (minutes)",
           repetitionsLabel: "how many times will you do this?",
           readyToCalculate: "ready to calculate",
-          fillInputs: "fill out the numbers to see if it's worth it",
+          fillInputs: "enter your numbers to see if it's worth it",
           share: "share result",
           copied: "copied!",
-          worthResult: "worth it",
+          worthResult: "worth it!",
           notWorthResult: "not worth it",
-          timeSaved: "time saved:",
-          timeLost: "time wasted:",
+          timeSaved: "you'll save:",
+          timeLost: "you'll waste:",
           hours: "h ",
           minutes: "min",
-          footerText: "simple math for automation decisions",
+          footerText: "don't waste time on automation that doesn't pay off",
         },
         pl: {
-          title: "czy warto automatyzować",
-          heroTitle: "czy warto automatyzować to zadanie?",
+          title: "warto zautomatyzować?",
+          heroTitle: "czy warto to zautomatyzować?",
           heroSubtitle:
-            "sprawdź, czy automatyzacja naprawdę pozwoli Ci zaoszczędzić czas",
-          formulaTitle: "wzór",
-          formula: "czas automatyzacji ≤ czas ręczny × liczba powtórzeń",
+            "oblicz, czy stworzenie automatyzacji faktycznie zaoszczędzi ci czas",
+          formulaTitle: "według wzoru:",
+          formula: "czas automatyzacji ≤ czas ręczny x liczba powtórzeń",
           inputTitle: "twoje zadanie",
-          automationLabel: "czas stworzenia automatyzacji (minuty)",
+          automationLabel: "czas na stworzenie automatyzacji (minuty)",
           manualLabel: "czas jednego ręcznego wykonania (minuty)",
           repetitionsLabel: "ile razy wykonasz to zadanie?",
           readyToCalculate: "gotowe do obliczeń",
-          fillInputs: "uzupełnij dane, aby sprawdzić opłacalność",
+          fillInputs: "wprowadź dane, aby sprawdzić czy warto",
           share: "udostępnij wynik",
-          copied: "skopiowano!",
-          worthResult: "warto",
+          copied: "skopiowane!",
+          worthResult: "warto!",
           notWorthResult: "nie warto",
-          timeSaved: "zaoszczędzony czas:",
-          timeLost: "stracony czas:",
-          hours: "h ",
+          timeSaved: "zaoszczędzisz:",
+          timeLost: "stracisz:",
+          hours: "godz. ",
           minutes: "min",
-          footerText: "prosta matematyka dla decyzji o automatyzacji",
+          footerText: "nie marnuj czasu na automatyzację, która się nie opłaca",
         },
       };
 
       // Current language and theme
       let currentLanguage = "en";
       let currentTheme = "dark";
+
+      // Language toggle
+      function toggleLanguage() {
+        currentLanguage = currentLanguage === "en" ? "pl" : "en";
+        updateLanguage();
+        updateLanguageToggle();
+      }
+
+      // Update language toggle button
+      function updateLanguageToggle() {
+        const button = document.getElementById("languageToggle");
+        // Show the language to which you can switch
+        button.textContent = currentLanguage === "en" ? "PL" : "EN";
+      }
 
       // Initialize
       function init() {
@@ -667,6 +766,7 @@
 
         // Update UI
         updateLanguage();
+        updateLanguageToggle();
         calculateResult();
       }
 
